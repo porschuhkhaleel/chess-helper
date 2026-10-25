@@ -1,0 +1,96 @@
+/* ==========================================
+   1. HIGHLIGHT SQUARES
+   ========================================== */
+#chess-overlay-container {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  pointer-events: none !important;
+  z-index: 999999 !important;
+  display: grid !important;
+  grid-template-columns: repeat(8, 1fr) !important;
+  grid-template-rows: repeat(8, 1fr) !important;
+}
+
+.chess-highlight-square {
+  box-sizing: border-box !important;
+  border-radius: 4px !important;
+  border: 4px solid transparent !important;
+}
+
+/* ELECTRIC CYAN: The piece you need to move */
+.chess-highlight-square[data-type="from"] {
+  border-color: rgba(0, 255, 255, 0.9) !important;
+  background-color: rgba(0, 255, 255, 0.25) !important;
+  box-shadow: 0 0 12px 2px rgba(0, 255, 255, 0.5) !important;
+}
+
+/* HOT MAGENTA: Where it should go (Empty square) */
+.chess-highlight-square[data-type="to"] {
+  border-color: rgba(255, 0, 255, 0.9) !important;
+  background-color: rgba(255, 0, 255, 0.25) !important;
+  box-shadow: 0 0 12px 2px rgba(255, 0, 255, 0.5) !important;
+}
+
+/* NEON ORANGE-RED: Where it should go (Capture opponent piece) */
+.chess-highlight-square[data-type="capture"] {
+  border-color: rgba(255, 69, 0, 0.9) !important;
+  background-color: rgba(255, 69, 0, 0.3) !important;
+  box-shadow: 0 0 15px 4px rgba(255, 69, 0, 0.6) !important;
+}
+
+/* ==========================================
+   2. FLOATING HUD WINDOW
+   ========================================== */
+#chess-ai-hud {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 280px;
+  background: #1e1e2e;
+  border: 1px solid #313244;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  color: #cdd6f4;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  z-index: 9999999;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+#chess-ai-hud-header {
+  background: #11111b;
+  padding: 10px 15px;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: grab;
+  user-select: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #313244;
+}
+
+#chess-ai-hud-header:active {
+  cursor: grabbing;
+}
+
+#chess-ai-hud-body {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.hud-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.hud-label { color: #a6adc8; }
+.hud-value { font-family: monospace; font-size: 16px; font-weight: bold; color: #a6e3a1; }
+.hud-status { color: #f9e2af; font-size: 13px; font-style: italic; }
